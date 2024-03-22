@@ -16,7 +16,7 @@ declare module "app1/Hoctest" {
 	export default Hoctest;
 }
 
-declare module "authapp/CounterTwo" {
+declare module "authapp/Auth" {
 	const Counter: React.ComponentType;
 	export default Counter;
 }

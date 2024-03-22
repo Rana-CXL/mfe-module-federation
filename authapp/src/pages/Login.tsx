@@ -1,4 +1,4 @@
-// import { gql, useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import {
   Box,
   Button,
@@ -8,52 +8,59 @@ import {
   Grid,
   Link,
   TextField,
+  ThemeProvider,
   Typography,
 } from "@mui/material";
 import { FormEvent } from "react";
 // import { getAuthToken, setAuthToken } from "@hr/services";
 import { useNavigate } from "react-router-dom";
+import theme from "styleguide/theme";
+import { client } from "services/apollo_SR";
+import { ApolloProvider } from "@apollo/client";
+
 
 type Props = {};
 
 export default function Login({}: Props) {
   const navigate = useNavigate();
 
-//   const ADD_TODO = gql`
-//     mutation UserLogin($username: String!, $password: String!) {
-//       login(username: $username, password: $password)
-//     }
-//   `;
+  const ADD_TODO = gql`
+    mutation UserLogin($username: String!, $password: String!) {
+      login(username: $username, password: $password)
+    }
+  `;
 
-//   const [userLogIn, { data, loading, error }] = useMutation(ADD_TODO);
-//   if(error){
-//     alert(`${error}`)
-//   }
+  const [userLogIn, { data, loading, error }] = useMutation(ADD_TODO);
+  if(error){
+    alert(`${error}`)
+  }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // userLogIn({
-    //   variables: {
-    //     username: data.get("email"),
-    //     password: data.get("password"),
-    //   },
+    userLogIn({
+      variables: {
+        username: data.get("email"),
+        password: data.get("password"),
+      },
       
-    //   onCompleted: (data: any) => {
-    //     if (data?.login) {
-    //     //   setAuthToken(data.login);
-    //     }
-    //     alert('logged in successfully')
-    //     navigate("/dashboard");
-    //   },
-    //   onError: (error) => {
-    //     alert(error)
-    //   }
-    // });
+      onCompleted: (data: any) => {
+        if (data?.login) {
+        //   setAuthToken(data.login);
+        }
+        alert('logged in successfully')
+        // navigate("/dashboard");
+      },
+      onError: (error) => {
+        alert(error)
+      }
+    });
   };
 
   return (
+    // <ApolloProvider client={client}>
+
     <Container component="main" maxWidth="xs" sx={{ height: "70vh" }}>
       <Box
         sx={{
@@ -120,5 +127,6 @@ export default function Login({}: Props) {
         </Box>
       </Box>
     </Container>
+    // </ApolloProvider>
   );
 }

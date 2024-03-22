@@ -106,7 +106,7 @@ export default function Register({}: Props) {
             </Grid>
             <Grid item >
                <Typography  onClick={()=>{
-                navigate("/auth/login")
+                navigate("/login")
               }} sx={{color:'#1769aa', fontSize:'14px' ,cursor:'pointer'}}>
                 Already have an account? Sign In.
               </Typography>

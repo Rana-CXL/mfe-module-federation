@@ -36,7 +36,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '..', './build'),
     filename: 'bundle.js',
-    // publicPath: '/',
+    publicPath: 'auto',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -46,10 +46,13 @@ module.exports = {
       name:'authapp',
       filename: "remoteEntry.js",
       exposes: {
-        "./CounterTwo":  path.resolve(__dirname, '..', './src/App.tsx'),
+        "./Auth":  path.resolve(__dirname, '..', './src/App.tsx'),
+        "./Login":  path.resolve(__dirname, '..', './src/pages/Login.tsx'),
+        "./Register":  path.resolve(__dirname, '..', './src/pages/Register.tsx')
       },
       remotes: {
         styleguide: "styleguide@http://localhost:8084/remoteEntry.js",
+        services:"services@http://localhost:8085/remoteEntry.js"
       },
       shared: {
         ...deps,
@@ -58,10 +61,10 @@ module.exports = {
           singleton: true,
           eager: true,
           requiredVersion: deps["react-dom"],
-          // "@mui/material": { singleton: true , eager:true, requiredVersion:deps['@mui/material'] },
-          // "@emotion/react": { singleton: true,eager:true, requiredVersion: deps["@emotion/react"] },
-          // "@emotion/styled": { singleton: true,eager:true, requiredVersion: deps["@emotion/styled"] },  
         },
+         "@mui/material": { singleton: true , eager:true, requiredVersion:deps['@mui/material'] },
+         "@emotion/react": { singleton: true,eager:true, requiredVersion: deps["@emotion/react"] },
+         "@emotion/styled": { singleton: true,eager:true, requiredVersion: deps["@emotion/styled"] },  
       },
     })
   ],
