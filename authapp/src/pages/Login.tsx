@@ -14,16 +14,17 @@ import {
 import { FormEvent } from "react";
 // import { getAuthToken, setAuthToken } from "@hr/services";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// import useSignIn from "react-auth-kit/hooks/useSignIn";
 import theme from "styleguide/theme";
 import { client } from "services/apollo_SR";
 import { ApolloProvider } from "@apollo/client";
-
 
 type Props = {};
 
 export default function Login({}: Props) {
   const navigate = useNavigate();
-
+  // const signIn = useSignIn();
   const ADD_TODO = gql`
     mutation UserLogin($username: String!, $password: String!) {
       login(username: $username, password: $password)
@@ -31,31 +32,52 @@ export default function Login({}: Props) {
   `;
 
   const [userLogIn, { data, loading, error }] = useMutation(ADD_TODO);
-  if(error){
-    alert(`${error}`)
+  if (error) {
+    alert(`${error}`);
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    // if (
+    //   signIn({
+    //     auth: {
+    //       token: "abcd",
+    //       type: "Bearer",
+    //     },
+    //     refresh: "efgh",
+    //     userState: {
+    //       name : 'kruti',
+    //       id: '01',
+    //     },
+    //   })
+    // ) {
+    //   // Only if you are using refreshToken feature
+    //   // Redirect or do-something
+    // } else {
+    //   //Throw error
+    // }
     const data = new FormData(event.currentTarget);
+    // userLogIn({
+    //   variables: {
+    //     username: data.get("email"),
+    //     password: data.get("password"),
+    //   },
 
-    userLogIn({
-      variables: {
-        username: data.get("email"),
-        password: data.get("password"),
-      },
-      
-      onCompleted: (data: any) => {
-        if (data?.login) {
-        //   setAuthToken(data.login);
-        }
-        alert('logged in successfully')
-        // navigate("/dashboard");
-      },
-      onError: (error) => {
-        alert(error)
-      }
-    });
+    //   onCompleted: (data: any) => {
+    //     if (data?.login) {
+    //       //   setAuthToken(data.login);
+    //       axios.post("/api/login", userLogIn).then((res) => {
+    //         if (res.status === 200) {
+    //         }
+    //       });
+    //     }
+    //     alert("logged in successfully");
+    //     // navigate("/dashboard");
+    //   },
+    //   onError: (error) => {
+    //     alert(error);
+    //   },
+    // });
   };
 
   return (
@@ -116,10 +138,12 @@ export default function Login({}: Props) {
               </Link>
             </Grid>
             <Grid item>
-             
-              <Typography  onClick={()=>{
-                navigate("/register")
-              }} sx={{color:'#1769aa', fontSize:'14px' ,cursor:'pointer'}}>
+              <Typography
+                onClick={() => {
+                  navigate("/register");
+                }}
+                sx={{ color: "#1769aa", fontSize: "14px", cursor: "pointer" }}
+              >
                 Don't have an account? Sign Up
               </Typography>
             </Grid>

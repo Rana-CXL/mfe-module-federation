@@ -1,10 +1,8 @@
-
-type Props = {}
+type Props = {};
 
 function First({}: Props) {
-  return (
-    <div>First</div>
-  )
+  console.log("calling from first");
+  return <div>First</div>;
 }
 
-export default First
+export default First;

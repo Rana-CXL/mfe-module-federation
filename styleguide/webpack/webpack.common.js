@@ -6,7 +6,7 @@ const deps = require("../package.json").dependencies;
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
   },
   module: {
     rules: [
@@ -47,6 +47,7 @@ module.exports = {
       exposes: {
         "./BasicCard":  path.resolve(__dirname, '..', './src/App.tsx'),
         "./theme": path.resolve(__dirname, '..', './src/Theme/theme.ts'),
+        "./Layout": path.resolve(__dirname, '..', './src/component/Layout/Layout.tsx'),
       },
       shared: {
         ...deps,

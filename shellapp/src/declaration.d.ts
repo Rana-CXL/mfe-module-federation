@@ -39,6 +39,11 @@ declare module "styleguide/theme" {
 	export default theme; 
 }
 
+declare module "styleguide/Layout" {
+	const Layout: React.ComponentType;
+	export default Layout;
+}
+
 declare module "services/customHooksSR" {
 	export function useCustomHook1():string
 	export function useCustomHook2():string

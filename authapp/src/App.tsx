@@ -17,6 +17,7 @@ const App = () => {
           <Routes>
             <Route path="authlogin" element={<Login />} />
             <Route path="authregister" element={<Register />}></Route>
+            <Route path="first" element={<First />}></Route>
           </Routes>
         </ThemeProvider>
       </ErrorBoundary>
