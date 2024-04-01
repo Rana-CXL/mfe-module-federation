@@ -54,3 +54,7 @@ declare module "services/apollo_SR" {
 	export const client: ApolloClient<NormalizedCacheObject>;
 	export const GET_CONTINENTS: DocumentNode
 }
+declare module "services/ProtectedRoute" {
+	const ProtectedRoute: React.ComponentType
+	export default ProtectedRoute;
+}

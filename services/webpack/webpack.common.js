@@ -47,7 +47,8 @@ module.exports = {
       exposes: {
         // "./hooks": path.resolve(__dirname, '..', './src/customHooks'),
         "./customHooksSR": path.resolve(__dirname, '..', './src/customHooks'),
-        "./apollo_SR":  path.resolve(__dirname, '..', './src/apollo/index.ts')
+        "./apollo_SR":  path.resolve(__dirname, '..', './src/apollo/index.ts'),
+        "./ProtectedRoute" : path.resolve(__dirname, '..', './src/ProtectedRoute/ProtectedRoute.tsx')
       },
       remotes: {},
       shared: {

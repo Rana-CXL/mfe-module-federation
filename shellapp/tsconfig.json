@@ -19,6 +19,6 @@
     "checkJs": true,
     "isolatedModules": true
   },
-  "include": ["src/**/**/*"],
+  "include": ["src/**/**/*", "../services/ProtectedRoute"],
   "exclude": ["node_modules"]
 }

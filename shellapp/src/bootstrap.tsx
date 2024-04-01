@@ -13,21 +13,20 @@ const rootEl = document.querySelector("#root");
 if (!rootEl) throw new Error("Cannot find root element with that id");
 const root = createRoot(rootEl);
 const store = createStore({
-  authName:'_auth',
-  authType:'localstorage',
+  authName: "_auth",
+  authType: "cookie",
   cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'http:',
+  cookieSecure: false,
 });
-
 
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <AuthProvider store={store}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <AuthProvider store={store}>
           <App />
-        </ThemeProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>
 );

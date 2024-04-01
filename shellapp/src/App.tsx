@@ -4,7 +4,7 @@ const CounterAppOne = React.lazy(() => import("app1/CounterAppOne"));
 const HocTest = React.lazy(() => import("app1/Hoctest"));
 const CounterTwo = React.lazy(() => import("authapp/Auth"));
 const First = React.lazy(() => import("authapp/Auth"));
-const Login = React.lazy(() => import("authapp/Login"));
+const Login = React.lazy(() => import("../src/component/Login"));
 const Register = React.lazy(() => import("authapp/Register"));
 const BasicCard = React.lazy(() => import("styleguide/BasicCard"));
 // const Layout = React.lazy(() => import("styleguide/Layout"));
@@ -18,32 +18,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./component/Landing";
 import AuthOutlet from "@auth-kit/react-router/AuthOutlet";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
+import PrivateRoute from "services/ProtectedRoute";
 
 export const App = () => {
   const signIn = useSignIn();
-  const handleSubmit = () => {
-    console.log("first")
-    if(signIn({
-      auth: {
-          token: 'ey....mA',
-          type: 'Bearer'
-      },
-      userState: {
-          name: 'React User',
-          uid: 123456
-      }
-  })){
-      // Redirect or do-something
-      console.log("second");
-  }else {
-      //Throw error
-      console.log("third");
-  }
-  };
+ 
   return (
     <>
       {/* <RouterProvider router={router} /> */}
-      <button onClick={handleSubmit}>Login</button>
+     
       <BrowserRouter>
         <Routes>
           {/* <Route path="/">
@@ -94,9 +77,13 @@ export const App = () => {
             <Route path="/dashboard" element={<Landing />} />
             <Route path="/login-formular" element={<Login />} />
           </Route> */}
-          <Route element={<AuthOutlet fallbackPath="/login" />}>
+          {/* <Route element={<AuthOutlet fallbackPath="/login" />}>
             <Route path="/dashboard" element={<Landing />} />
-          </Route>
+          </Route> */}
+          <Route
+            path="/dashboard"
+            element={<PrivateRoute element={<Landing />}></PrivateRoute>}
+          ></Route>
         </Routes>
       </BrowserRouter>
 
