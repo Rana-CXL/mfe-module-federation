@@ -5,7 +5,3 @@ declare module "styleguide/theme" {
 	export default theme; 
 }
 
-declare module "services/ProtectedLayout" {
-	const ProtectedLayout: any
-	export default ProtectedLayout;
-}
