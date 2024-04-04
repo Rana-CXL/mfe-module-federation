@@ -55,6 +55,8 @@ declare module "services/apollo_SR" {
 	export const GET_CONTINENTS: DocumentNode
 }
 declare module "services/ProtectedRoute" {
-	const ProtectedRoute: React.ComponentType
+	const ProtectedRoute: React.FC<{
+		element: React.ReactElement;
+	}>
 	export default ProtectedRoute;
 }

@@ -15,18 +15,14 @@ import { FormEvent } from "react";
 // import { getAuthToken, setAuthToken } from "@hr/services";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import useSignIn from "react-auth-kit/hooks/useSignIn";
 import theme from "styleguide/theme";
 import { client } from "services/apollo_SR";
 import { ApolloProvider } from "@apollo/client";
-import useSignIn from "react-auth-kit/hooks/useSignIn";
 
 type Props = {};
 
 export default function Login({}: Props) {
   const navigate = useNavigate();
-  const signIn = useSignIn();
-  // const signIn = useSignIn();
   const ADD_TODO = gql`
     mutation UserLogin($username: String!, $password: String!) {
       login(username: $username, password: $password)
@@ -41,7 +37,7 @@ export default function Login({}: Props) {
     localStorage.setItem("authToken", value);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -82,7 +78,9 @@ export default function Login({}: Props) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" 
+        onSubmit={handleSubmit} 
+        noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required

@@ -1,8 +1,5 @@
 import React, { PropsWithChildren } from "react";
-// import { SnackbarComponent } from "../../components/SnackbarComponent";
-// import { Footer } from "../../components/FooterComponent";
-// import SidebarTwo from "../../components/Sidebar/SidebarTwo";
-// import Appbar from "../../components/Appbar/Appbar";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   Drawer,
@@ -10,9 +7,7 @@ import {
   Toolbar,
   Divider,
   IconButton,
-  Breadcrumbs,
-  Typography,
-  Link,
+ 
 } from "@mui/material";
 import {
   ChevronLeft as ChevronLeftIcon,
@@ -35,9 +30,7 @@ import "./Layout.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { Outlet } from "react-router";
 
-export default function HigherOrderLayout({
-  children,
-}: PropsWithChildren<React.ReactNode>) {
+export default function HigherOrderLayout() {
   const isMobile = useMediaQuery("(max-width: 900px)");
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);

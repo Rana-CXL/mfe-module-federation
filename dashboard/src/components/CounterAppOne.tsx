@@ -5,7 +5,7 @@ const Counter = () => {
 
 	return (
 		<div>
-			counter from dashboard s
+			This is dasboard Application
 			<button onClick={() => setCount(count + 1)}>Click me {count} </button>
 		</div>
 	);

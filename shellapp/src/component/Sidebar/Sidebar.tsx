@@ -16,8 +16,8 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login-formular">
-            Login Form
+          <NavLink to="/styleguide-card">
+          styleguide-card
           </NavLink>
         </li>
       </ul>

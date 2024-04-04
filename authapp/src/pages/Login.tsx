@@ -15,7 +15,6 @@ import { FormEvent } from "react";
 // import { getAuthToken, setAuthToken } from "@hr/services";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import useSignIn from "react-auth-kit/hooks/useSignIn";
 import theme from "styleguide/theme";
 import { client } from "services/apollo_SR";
 import { ApolloProvider } from "@apollo/client";
@@ -24,7 +23,6 @@ type Props = {};
 
 export default function Login({}: Props) {
   const navigate = useNavigate();
-  // const signIn = useSignIn();
   const ADD_TODO = gql`
     mutation UserLogin($username: String!, $password: String!) {
       login(username: $username, password: $password)
@@ -37,7 +35,9 @@ export default function Login({}: Props) {
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
+    localStorage.setItem("authToken", 'token')
+    navigate('/')
     // if (
     //   signIn({
     //     auth: {
