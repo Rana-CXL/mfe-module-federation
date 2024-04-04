@@ -6,6 +6,9 @@ const CounterTwo = React.lazy(() => import("authapp/Auth"));
 const Login = React.lazy(() => import("authapp/Login"));
 const Register = React.lazy(() => import("authapp/Register"));
 const BasicCard = React.lazy(() => import("styleguide/BasicCard"));
+const DemoPubSub = React.lazy(() => import("eventpublisher/DemoPubSub"));
+const Subscriber = React.lazy(() => import("app1/Subscriber"));
+const Publisher = React.lazy(() => import("eventpublisher/Publisher"));
 import { useCustomHook1, useCustomHook2 } from "services/customHooksSR";
 import { client } from "services/apollo_SR";
 import ShellContainer from "./component/ShellContainer";
@@ -52,6 +55,49 @@ export const App = () => {
               <React.Suspense fallback="Loading">
                 <Register />
               </React.Suspense>
+            }
+          />
+          <Route
+            path="/DemoPubSub"
+            element={
+              <ErrorBoundary>
+                <React.Suspense fallback="Loading">
+                  <DemoPubSub />
+                  <CounterAppOne />
+                </React.Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/Publisher"
+            element={
+              <ErrorBoundary>
+                <React.Suspense fallback="Loading">
+                  <Publisher />
+                  {/* <Subscriber /> */}
+                </React.Suspense>
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/subscriber"
+            element={
+              <ErrorBoundary>
+                <React.Suspense fallback="Loading">
+                  <Subscriber />
+                </React.Suspense>
+              </ErrorBoundary>
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+              <ErrorBoundary>
+                <React.Suspense fallback="Loading">
+                  <CounterAppOne />
+                </React.Suspense>
+              </ErrorBoundary>
             }
           />
         </Routes>

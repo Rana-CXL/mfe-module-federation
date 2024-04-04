@@ -1,6 +1,6 @@
-declare module '*.png';
+declare module "*.png";
 
 declare module "styleguide/theme" {
-	const theme:any 
-	export default theme; 
+  const theme: any;
+  export default theme;
 }

@@ -42,18 +42,18 @@ module.exports = {
       template: path.resolve(__dirname, "..", "./src/index.html"),
     }),
     new ModuleFederationPlugin({
-      name: "app1",
+      name: "eventpublisher",
       filename: "remoteEntry.js",
       exposes: {
-        "./CounterAppOne": path.resolve(
+        "./DemoPubSub": path.resolve(
           __dirname,
           "..",
-          "./src/components/CounterAppOne.tsx"
+          "./src/components/DemoPubSub.tsx"
         ),
-        "./Subscriber": path.resolve(
+        "./Publisher": path.resolve(
           __dirname,
           "..",
-          "./src/components/Subscriber.tsx"
+          "./src/components/Publisher.tsx"
         ),
         "./Hoctest": path.resolve(
           __dirname,
@@ -63,6 +63,7 @@ module.exports = {
       },
       remotes: {
         services: "services@http://localhost:8085/remoteEntry.js",
+        app1: "app1@http://localhost:8082/remoteEntry.js",
       },
       shared: {
         ...deps,
